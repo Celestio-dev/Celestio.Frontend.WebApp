@@ -4,9 +4,10 @@ import RegisterPage from "./pages/RegisterPage";
 import LandingPage from "./pages/LandingPage";
 import LoginLayout from "./layout/LoginLayout";
 import AppLayout from "./layout/AppLayout";
-import DashboardPage from "./pages/DashboardPage";
-import ProfilePage from "./pages/ProfilePage";
+import AgencyDashboardPage from "./pages/AgencyDashboardPage";
+import CreatorProfilePage from "./pages/CreatorProfilePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import BrandDashboardPage from "./pages/BrandDashboardPage";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +26,9 @@ const router = createBrowserRouter([
     path: "app",
     element: <AppLayout />,
     children: [
-      { index: true, element: <DashboardPage /> },
-      { path: "profile", element: <ProfilePage /> },
+      { path: "agency", element: <AgencyDashboardPage /> },
+      { path: "brand", element: <BrandDashboardPage /> },
+      { path: "creator", element: <CreatorProfilePage /> },
     ],
   },
 ]);

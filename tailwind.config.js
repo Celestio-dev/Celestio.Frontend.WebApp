@@ -17,6 +17,8 @@ export default {
       text: "#2A2A2A",
       "light-text": "#575757",
       error: "#D70000",
+      black: "#000000",
+      placeholder: "#D9D9D9",
     },
     extend: {},
   },

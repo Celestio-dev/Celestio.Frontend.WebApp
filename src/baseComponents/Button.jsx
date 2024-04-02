@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GoogleIcon from "../assets/icons/google-icon.svg";
+import IGIcon from "../assets/icons/ig-icon.svg";
 
 function Button(props) {
   return (
@@ -21,7 +23,17 @@ function Button(props) {
           className="flex justify-center items-center gap-3"
         >
           {props.icon ? (
-            <img src={`src/assets/${props.icon}`} alt="icon" className="w-5" />
+            <img
+              src={`${
+                props.icon == "google"
+                  ? GoogleIcon
+                  : props.icon == "ig"
+                  ? IGIcon
+                  : ""
+              }`}
+              alt="icon"
+              className="w-5"
+            />
           ) : (
             ""
           )}

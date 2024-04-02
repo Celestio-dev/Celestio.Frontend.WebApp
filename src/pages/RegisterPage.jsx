@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../baseComponents/Button";
-import Heading from "../baseComponents/Heading";
+import LandingHeading from "../baseComponents/LandingHeading";
 import Paragraph from "../baseComponents/Paragraph";
 import InputField from "../baseComponents/InputField";
 import { Link } from "react-router-dom";
@@ -16,9 +16,9 @@ function RegisterPage(props) {
 
   return (
     <div className="mt-12 flex flex-col gap-7 justify-center items-center w-[530px] ">
-      <Heading>
+      <LandingHeading>
         {props.type == "agency" ? "Registriraj se" : "Registriraj se"}
-      </Heading>
+      </LandingHeading>
 
       <Paragraph className="text-center" size>
         Ponude za kreiranje sadržaja udaljene su samo par klikova!
@@ -27,7 +27,7 @@ function RegisterPage(props) {
       <div className="flex flex-col w-full gap-4">
         <Button
           label="Prijavi se s Google"
-          icon="google-icon.svg"
+          icon="google"
           type="secondary"
           linkTo="creator-login"
           className="w-full"
@@ -37,7 +37,7 @@ function RegisterPage(props) {
           type="secondary"
           linkTo="creator-login"
           className="w-full"
-          icon="ig-icon.svg"
+          icon="ig"
         />
       </div>
 

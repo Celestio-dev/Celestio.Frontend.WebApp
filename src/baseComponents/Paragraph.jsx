@@ -3,9 +3,9 @@ import React from "react";
 function Paragraph(props) {
   return (
     <p
-      className={`${
-        props.size ? "text-[20px]" : ""
-      } text-light-text font-medium ${props.className || ""}
+      className={`${props.size ? "text-[20px]" : ""} ${
+        props.app ? "text-black" : "text-light-text"
+      } font-medium ${props.className || ""}
       `}
     >
       {props.children}

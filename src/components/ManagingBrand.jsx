@@ -2,36 +2,23 @@ import React from "react";
 import Paragraph from "../baseComponents/Paragraph";
 import Button from "../baseComponents/Button";
 import ImgPlaceholder from "../assets/placeHolders/img-placeholder.svg";
-import CalendarIcon from "../assets/icons/calendar.svg";
-import PriceTagIcon from "../assets/icons/price-tag.svg";
-import UserIcon from "../assets/icons/user.svg";
+import FolderIcon from "../assets/icons/folder-icon.svg";
 import AppHeading from "../baseComponents/AppHeading";
 
 function Brief(props) {
-  const dueDate = new Date(props.dueDate);
-  const formattedDate = `${dueDate.getDate()}/${
-    dueDate.getMonth() + 1
-  }/${dueDate.getFullYear()}`;
-
   return (
     <div className="bg-secondary flex w-[900px] items-center justify-start gap-5 p-6 rounded-[35px]">
       <div className="flex justify-start items-start h-full">
         <img src={ImgPlaceholder} alt="upload product" />
       </div>
       <div className="flex flex-col gap-5 w-full justify-start items-start h-full">
-        <AppHeading>{props.briefName}</AppHeading>
+        <AppHeading>{props.brandName}</AppHeading>
         <div className="flex gap-5 items-center w-full">
           <div className="flex items-center gap-2">
-            <img src={CalendarIcon} alt="price tag" />
-            <Paragraph app>{formattedDate}</Paragraph>
-          </div>
-          <div className="flex items-center gap-2">
-            <img src={PriceTagIcon} alt="price tag" />
-            <Paragraph app>product + {props.price}</Paragraph>
-          </div>
-          <div className="flex items-center gap-2">
-            <img src={UserIcon} alt="price tag" />
-            <Paragraph app>{props.numCreators}</Paragraph>
+            <img src={FolderIcon} alt="price tag" />
+            <Paragraph app>
+              {props.numOfSubmissions} objavljenih UGC zahtjeva
+            </Paragraph>
           </div>
         </div>
 

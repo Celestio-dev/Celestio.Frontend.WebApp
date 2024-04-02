@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../baseComponents/Button";
-import Heading from "../baseComponents/Heading";
+import LandingHeading from "../baseComponents/LandingHeading";
 import Paragraph from "../baseComponents/Paragraph";
 import InputField from "../baseComponents/InputField";
 import { useNavigate } from "react-router-dom";
@@ -9,15 +9,15 @@ function LoginPage(props) {
   const navigate = useNavigate();
 
   const onLogin = () => {
-    console.log("Login");
-    navigate("/app");
+    if (props.type == "agency") navigate("/app/agency");
+    else navigate("/app/creator");
   };
 
   return (
     <div className="mt-12 flex flex-col gap-7 justify-center items-center w-[630px] ">
-      <Heading>
+      <LandingHeading>
         {props.type == "agency" ? "Pozdrav Agencija!" : "Pozdrav Kreatoru!"}
-      </Heading>
+      </LandingHeading>
       <div className="w-full flex items-center justify-center flex-col gap-4">
         <Paragraph size>Prvi put si ovdje?</Paragraph>
         <Button
@@ -38,7 +38,7 @@ function LoginPage(props) {
 
         <Button
           label="Prijavi se s Google"
-          icon="google-icon.svg"
+          icon="google"
           type="secondary"
           linkTo="creator-login"
           className="w-full"
@@ -48,7 +48,7 @@ function LoginPage(props) {
           type="secondary"
           linkTo="creator-login"
           className="w-full"
-          icon="ig-icon.svg"
+          icon="ig"
         />
       </div>
       <div className="flex w-full gap-3 items-center justify-center">
