@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import MainNavBar from "../components/AppNavBar";
-import LoginNavBar from "../components/LoginNavBar";
+import MainNavBar from "../components/navBars/AgencyNavBar";
+import LoginNavBar from "../components/navBars/LoginNavBar";
 import { useLocation } from "react-router-dom";
 
 function LoginLayout() {

@@ -6,17 +6,17 @@ import Paragraph from "../baseComponents/Paragraph";
 import VerifiedBadge from "../assets/icons/verified-badge.svg";
 import StartIcon from "../assets/icons/star-icon.svg";
 
-function DashboardProfileDetails(props) {
+function DashboardProfileDetails({ data, type }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 w-[20%]">
       <img src={LogoPlaceholder} alt="logo" className="w-[240px]" />
 
       <div className="flex gap-5 items-center">
-        <AppHeading>{props.name}</AppHeading>
-        <img src={VerifiedBadge} className="w-[30px]" />
+        <AppHeading>{data.name}</AppHeading>
+        {type === "creator" && <img src={VerifiedBadge} className="w-[30px]" />}
       </div>
 
-      {props.type === "creator" ? (
+      {type === "creator" ? (
         <div className="flex items-center gap-4">
           <div className="flex">
             <img src={StartIcon} alt="star" />

@@ -4,10 +4,14 @@ import RegisterPage from "./pages/RegisterPage";
 import LandingPage from "./pages/LandingPage";
 import LoginLayout from "./layout/LoginLayout";
 import AppLayout from "./layout/AppLayout";
-import AgencyDashboardPage from "./pages/AgencyDashboardPage";
-import CreatorProfilePage from "./pages/CreatorProfilePage";
+import AgencyProfilePage from "./pages/profilePages/AgencyProfilePage";
+import CreatorProfilePage from "./pages/profilePages/CreatorProfilePage";
+import EditCreatorProfile from "./pages/editPages/EditCreatorProfile";
+import EditAgencyProfile from "./pages/editPages/EditAgencyProfile";
+import CreatorDashboard from "./pages/CreatorDashboard";
+import CreatorSearch from "./pages/CreatorSearch";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import BrandDashboardPage from "./pages/BrandDashboardPage";
+import BrandProfilePage from "./pages/profilePages/BrandProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +30,16 @@ const router = createBrowserRouter([
     path: "app",
     element: <AppLayout />,
     children: [
-      { path: "agency", element: <AgencyDashboardPage /> },
-      { path: "brand", element: <BrandDashboardPage /> },
+      //Agency pages
+      { path: "agency", element: <AgencyProfilePage /> },
+      { path: "agency/edit", element: <EditAgencyProfile /> },
+      //Brand pages
+      { path: "brand", element: <BrandProfilePage /> },
+      //Creator pages
       { path: "creator", element: <CreatorProfilePage /> },
+      { path: "creator/edit", element: <EditCreatorProfile /> },
+      { path: "creator/dashboard", element: <CreatorDashboard /> },
+      { path: "creator/search", element: <CreatorSearch /> },
     ],
   },
 ]);

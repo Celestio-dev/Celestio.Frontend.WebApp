@@ -13,7 +13,13 @@ function Button(props) {
       ${
         props.type == "primary"
           ? "bg-primary text-white"
-          : "bg-secondary text-text"
+          : props.type == "secondary"
+          ? "bg-secondary text-text"
+          : props.type == "danger"
+          ? "bg-error text-white"
+          : props.type == "white"
+          ? "bg-white text-text"
+          : ""
       }`}
       onClick={props.onClick}
     >
@@ -37,10 +43,10 @@ function Button(props) {
           ) : (
             ""
           )}
-          <p className="font-medium">{props.label}</p>
+          <p className="font-semibold">{props.label}</p>
         </Link>
       ) : (
-        <p className="font-medium">{props.label}</p>
+        <p className="font-semibold">{props.label}</p>
       )}
     </button>
   );

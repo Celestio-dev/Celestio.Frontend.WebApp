@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "../baseComponents/Logo";
-import Button from "../baseComponents/Button";
+import Logo from "../../baseComponents/Logo";
+import Button from "../../baseComponents/Button";
 
 function LoginNavBar() {
   return (

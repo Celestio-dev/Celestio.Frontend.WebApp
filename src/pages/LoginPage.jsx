@@ -4,13 +4,36 @@ import LandingHeading from "../baseComponents/LandingHeading";
 import Paragraph from "../baseComponents/Paragraph";
 import InputField from "../baseComponents/InputField";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { logInAgency } from "../slices/AgencySlice";
+import { logInCreator } from "../slices/CreatorSlice";
 
 function LoginPage(props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onLogin = () => {
-    if (props.type == "agency") navigate("/app/agency");
-    else navigate("/app/creator");
+    if (email == "") setEmailError(true);
+    else setEmailError(false);
+
+    if (password == "") setPasswordError(true);
+    else setPasswordError(false);
+
+    if (email == "" || password == "") return;
+
+    if (props.type == "agency") {
+      dispatch(logInAgency({}));
+      navigate("/app/agency/");
+    } else {
+      dispatch(logInCreator({}));
+      navigate("/app/creator/");
+    }
   };
 
   return (
@@ -23,7 +46,9 @@ function LoginPage(props) {
         <Button
           label="Prvo se registiraj"
           type="primary"
-          linkTo="/agency-register"
+          linkTo={
+            props.type == "agency" ? "/agency-register" : "/creator-register"
+          }
           className="w-full"
         />
       </div>
@@ -62,18 +87,23 @@ function LoginPage(props) {
           type="email"
           label="Email adresa"
           placeholder="marko@primjer.com"
+          value={email}
+          showError={emailError}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <InputField
           type="password"
           label="Upiši lozinku"
           placeholder="******"
+          value={password}
+          showError={passwordError}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
       <Button
         label="Prijavi se"
         type="primary"
-        linkTo="creator-login"
         className="w-full"
         onClick={onLogin}
       />

@@ -7,6 +7,7 @@ function Paragraph(props) {
         props.app ? "text-black" : "text-light-text"
       } font-medium ${props.className || ""}
       `}
+      onClick={props.onClick}
     >
       {props.children}
     </p>

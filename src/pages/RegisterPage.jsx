@@ -5,13 +5,65 @@ import Paragraph from "../baseComponents/Paragraph";
 import InputField from "../baseComponents/InputField";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {
+  logInAgency,
+  setAgencyName,
+  setManagerName,
+} from "../slices/AgencySlice";
+import { logInCreator, setCreatorName } from "../slices/CreatorSlice";
+import { useDispatch } from "react-redux";
 
 function RegisterPage(props) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [firstNameError, setFirstNameError] = useState(false);
+  const [lastNameError, setLastNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onRegister = () => {
-    console.log("Register");
-    navigate("/app");
+    if (firstName == "") setFirstNameError(true);
+    else setFirstNameError(false);
+
+    if (lastName == "") setLastNameError(true);
+    else setLastNameError(false);
+
+    if (email == "") setEmailError(true);
+    else setEmailError(false);
+
+    if (password == "") setPasswordError(true);
+    else setPasswordError(false);
+
+    if (confirmPassword !== password) setConfirmPasswordError(true);
+    else setConfirmPasswordError(false);
+
+    if (
+      firstName == "" ||
+      lastName == "" ||
+      email == "" ||
+      password == "" ||
+      confirmPassword !== password
+    )
+      return;
+
+    if (props.type == "agency") {
+      dispatch(logInAgency({}));
+      dispatch(setManagerName(firstName + " " + lastName));
+      navigate("/app/agency/edit");
+    } else {
+      dispatch(logInCreator({}));
+      dispatch(setCreatorName(firstName + " " + lastName));
+      navigate("/app/creator/edit");
+    }
   };
 
   return (
@@ -48,29 +100,52 @@ function RegisterPage(props) {
       </div>
 
       <div className="w-full flex items-center justify-center flex-col gap-4">
-        <InputField type="text" label="Ime" placeholder="Npr. Marko" />
-        <InputField type="text" label="Prezime" placeholder="Npr. Horvat" />
+        <InputField
+          type="text"
+          label="Ime"
+          placeholder="Npr. Marko"
+          value={firstName}
+          showError={firstNameError}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <InputField
+          type="text"
+          label="Prezime"
+          placeholder="Npr. Horvat"
+          value={lastName}
+          showError={lastNameError}
+          onChange={(e) => setLastName(e.target.value)}
+        />
         <InputField
           type="email"
           label="Email adresa"
           placeholder="marko@primjer.com"
+          value={email}
+          showError={emailError}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <InputField
           type="password"
           label="Kreiraj lozinku"
           placeholder="******"
+          value={password}
+          showError={passwordError}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <InputField
           type="password"
           label="Ponovi lozinku"
           placeholder="******"
+          value={confirmPassword}
+          showError={confirmPasswordError}
+          errorMessage="Lozinke se ne podudaraju"
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
 
       <Button
         label="Prijavi se"
         type="primary"
-        linkTo="creator-login"
         className="w-full"
         onClick={onRegister}
       />

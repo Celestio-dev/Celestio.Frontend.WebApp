@@ -10,7 +10,7 @@ export default {
   theme: {
     colors: {
       // prettier-ignore
-      "primary": "#9747FF",
+      "primary": "#0E51EF",
       white: "#ffffff",
       background: "#FDFCFC",
       secondary: "#EFEFEF",
