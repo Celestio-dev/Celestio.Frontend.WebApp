@@ -107,7 +107,7 @@ function EditInfo(props) {
             onChange={(e) => setName(e.target.value)}
             showError={nameError}
           />
-          {!props.type == "creator" && (
+          {props.type != "creator" && (
             <InputField
               label="Ime agencije"
               type="text"
@@ -126,7 +126,7 @@ function EditInfo(props) {
             onChange={(e) => setDescription(e.target.value)}
             showError={descriptionError}
           />
-          {!props.type == "creator" && (
+          {props.type != "creator" && (
             <InputField
               label="Web stranica"
               type="text"
